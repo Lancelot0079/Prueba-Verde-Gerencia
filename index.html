@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" class="">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sistema de Votación - USTA</title>
-
-  <!-- Tailwind vía CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Configuración personalizada de colores USTA -->
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -23,12 +20,22 @@
       }
     }
   </script>
-
-  <meta name="description" content="Sistema de votación electrónica para la Universidad Santo Tomás" />
+  <style>
+    .dark-mode {
+      color-scheme: dark;
+    }
+    .light-mode {
+      color-scheme: light;
+    }
+    /* Transiciones suaves para el cambio de tema */
+    body, .transition-bg, .transition-text, .transition-border {
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+    }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100">
+<body class="light-mode bg-gray-50 text-gray-800">
   <!-- NAV -->
-  <nav class="sticky top-0 bg-usta-azul-oscuro text-white backdrop-blur">
+  <nav class="sticky top-0 bg-usta-azul-oscuro text-white backdrop-blur z-10">
     <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
       <div class="flex items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor">
@@ -38,8 +45,8 @@
       </div>
       <div class="flex items-center gap-3">
         <button id="themeBtn"
-                class="text-sm px-3 py-1.5 rounded-lg bg-usta-azul-claro hover:bg-blue-700">
-          Cambiar tema
+                class="text-sm px-3 py-1.5 rounded-lg bg-usta-azul-claro hover:bg-blue-700 transition-colors">
+          Cambiar a oscuro
         </button>
       </div>
     </div>
@@ -52,11 +59,11 @@
       <p class="mt-3 text-white/90 max-w-2xl mx-auto">Universidad Santo Tomás - Participa en las decisiones universitarias de manera segura y transparente.</p>
       <div class="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
         <a href="#votacion"
-           class="bg-usta-dorado text-usta-azul-oscuro font-medium px-5 py-2.5 rounded-xl shadow hover:shadow-md hover:bg-yellow-600">
+           class="bg-usta-dorado text-usta-azul-oscuro font-medium px-5 py-2.5 rounded-xl shadow hover:shadow-md hover:bg-yellow-600 transition-all">
           Ir a la votación
         </a>
         <a href="#resultados"
-           class="bg-white/20 text-white font-medium px-5 py-2.5 rounded-xl shadow hover:shadow-md hover:bg-white/30">
+           class="bg-white/20 text-white font-medium px-5 py-2.5 rounded-xl shadow hover:shadow-md hover:bg-white/30 transition-all">
           Ver resultados
         </a>
       </div>
@@ -67,41 +74,41 @@
   <section class="max-w-5xl mx-auto px-4 py-12">
     <h2 class="text-2xl font-bold text-usta-azul-oscuro dark:text-white text-center mb-8">Instrucciones para votar</h2>
     <div class="grid md:grid-cols-3 gap-6">
-      <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+      <div class="transition-bg bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
         <div class="w-12 h-12 bg-usta-azul-claro/10 text-usta-azul-claro rounded-full flex items-center justify-center text-xl font-bold mb-4">1</div>
-        <h3 class="font-semibold text-lg">Verifica tu identidad</h3>
-        <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Ingresa con tu correo institucional (@ustabuca.edu.co) para verificar que eres estudiante activo.</p>
+        <h3 class="font-semibold text-lg transition-text text-gray-800 dark:text-white">Verifica tu identidad</h3>
+        <p class="mt-2 text-sm transition-text text-gray-600 dark:text-gray-300">Ingresa con tu correo institucional para verificar que eres estudiante activo.</p>
       </div>
-      <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+      <div class="transition-bg bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
         <div class="w-12 h-12 bg-usta-azul-claro/10 text-usta-azul-claro rounded-full flex items-center justify-center text-xl font-bold mb-4">2</div>
-        <h3 class="font-semibold text-lg">Selecciona tu opción</h3>
-        <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Revisa las propuestas y selecciona la opción de tu preferencia para cada categoría.</p>
+        <h3 class="font-semibold text-lg transition-text text-gray-800 dark:text-white">Selecciona tu opción</h3>
+        <p class="mt-2 text-sm transition-text text-gray-600 dark:text-gray-300">Revisa las propuestas y selecciona la opción de tu preferencia para cada categoría.</p>
       </div>
-      <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+      <div class="transition-bg bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
         <div class="w-12 h-12 bg-usta-azul-claro/10 text-usta-azul-claro rounded-full flex items-center justify-center text-xl font-bold mb-4">3</div>
-        <h3 class="font-semibold text-lg">Confirma tu voto</h3>
-        <p class="mt-2 text-sm text-gray-600 dark:text-gray-300">Confirma tu selección. Recuerda que solo puedes votar una vez y no es posible cambiar tu voto.</p>
+        <h3 class="font-semibold text-lg transition-text text-gray-800 dark:text-white">Confirma tu voto</h3>
+        <p class="mt-2 text-sm transition-text text-gray-600 dark:text-gray-300">Confirma tu selección. Solo puedes votar una vez y no es posible cambiar tu voto.</p>
       </div>
     </div>
   </section>
 
   <!-- VOTACIÓN -->
   <section id="votacion" class="max-w-3xl mx-auto px-4 pb-12">
-    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
-      <h2 class="text-xl font-semibold text-usta-azul-oscuro dark:text-white">Formulario de Votación</h2>
-      <p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Ingresa tu información institucional y selecciona tus preferencias.</p>
+    <div class="transition-bg bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+      <h2 class="text-xl font-semibold transition-text text-usta-azul-oscuro dark:text-white">Formulario de Votación</h2>
+      <p class="mt-1 text-sm transition-text text-gray-600 dark:text-gray-300">Ingresa tu información institucional y selecciona tus preferencias.</p>
       
       <form id="votingForm" class="mt-6 grid gap-6">
         <div class="grid gap-2">
-          <label class="font-medium">Correo institucional</label>
+          <label class="font-medium transition-text text-gray-800 dark:text-white">Correo institucional</label>
           <input name="email" type="email" required placeholder="tu.correo@ustabuca.edu.co" 
-                 class="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-400 rounded-lg px-3 py-2" />
+                 class="transition-border border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-usta-azul-claro" />
         </div>
         
         <div class="grid gap-2">
-          <label class="font-medium">Facultad</label>
+          <label class="font-medium transition-text text-gray-800 dark:text-white">Facultad</label>
           <select name="facultad" required
-                  class="border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-100 rounded-lg px-3 py-2">
+                  class="transition-border border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-usta-azul-claro">
             <option value="">Selecciona tu facultad</option>
             <option value="ingenieria">Ingeniería</option>
             <option value="derecho">Derecho</option>
@@ -112,69 +119,69 @@
         </div>
         
         <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
-          <h3 class="font-semibold text-lg mb-4">Representante Estudiantil</h3>
+          <h3 class="font-semibold text-lg mb-4 transition-text text-gray-800 dark:text-white">Representante Estudiantil</h3>
           <div class="space-y-4">
-            <div class="flex items-start gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/30">
+            <div class="transition-bg flex items-start gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50">
               <input type="radio" name="representante" id="candidato1" value="candidato1" class="mt-1" required />
               <label for="candidato1" class="flex-1">
-                <span class="font-medium">María González</span>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Propuesta: Más espacios de recreación y mejoramiento de la infraestructura deportiva.</p>
+                <span class="font-medium transition-text text-gray-800 dark:text-white">María González</span>
+                <p class="text-sm transition-text text-gray-600 dark:text-gray-300 mt-1">Propuesta: Más espacios de recreación y mejoramiento de la infraestructura deportiva.</p>
               </label>
             </div>
-            <div class="flex items-start gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/30">
+            <div class="transition-bg flex items-start gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50">
               <input type="radio" name="representante" id="candidato2" value="candidato2" class="mt-1" />
               <label for="candidato2" class="flex-1">
-                <span class="font-medium">Carlos Rodríguez</span>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Propuesta: Ampliación de horarios de biblioteca y más recursos digitales.</p>
+                <span class="font-medium transition-text text-gray-800 dark:text-white">Carlos Rodríguez</span>
+                <p class="text-sm transition-text text-gray-600 dark:text-gray-300 mt-1">Propuesta: Ampliación de horarios de biblioteca y más recursos digitales.</p>
               </label>
             </div>
-            <div class="flex items-start gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/30">
+            <div class="transition-bg flex items-start gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50">
               <input type="radio" name="representante" id="candidato3" value="candidato3" class="mt-1" />
               <label for="candidato3" class="flex-1">
-                <span class="font-medium">Ana Martínez</span>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Propuesta: Programas de bienestar mental y apoyo psicológico para estudiantes.</p>
+                <span class="font-medium transition-text text-gray-800 dark:text-white">Ana Martínez</span>
+                <p class="text-sm transition-text text-gray-600 dark:text-gray-300 mt-1">Propuesta: Programas de bienestar mental y apoyo psicológico para estudiantes.</p>
               </label>
             </div>
           </div>
         </div>
         
         <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
-          <h3 class="font-semibold text-lg mb-4">Aprobación de Reglamento Estudiantil</h3>
+          <h3 class="font-semibold text-lg mb-4 transition-text text-gray-800 dark:text-white">Aprobación de Reglamento Estudiantil</h3>
           <div class="space-y-4">
-            <div class="flex items-start gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/30">
+            <div class="transition-bg flex items-start gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50">
               <input type="radio" name="reglamento" id="aprobacion_si" value="si" class="mt-1" required />
               <label for="aprobacion_si" class="flex-1">
-                <span class="font-medium">A favor</span>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">Apruebo el nuevo reglamento estudiantil propuesto.</p>
+                <span class="font-medium transition-text text-gray-800 dark:text-white">A favor</span>
+                <p class="text-sm transition-text text-gray-600 dark:text-gray-300 mt-1">Apruebo el nuevo reglamento estudiantil propuesto.</p>
               </label>
             </div>
-            <div class="flex items-start gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/30">
+            <div class="transition-bg flex items-start gap-3 p-4 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700/50">
               <input type="radio" name="reglamento" id="aprobacion_no" value="no" class="mt-1" />
               <label for="aprobacion_no" class="flex-1">
-                <span class="font-medium">En contra</span>
-                <p class="text-sm text-gray-600 dark:text-gray-300 mt-1">No apruebo el nuevo reglamento estudiantil propuesto.</p>
+                <span class="font-medium transition-text text-gray-800 dark:text-white">En contra</span>
+                <p class="text-sm transition-text text-gray-600 dark:text-gray-300 mt-1">No apruebo el nuevo reglamento estudiantil propuesto.</p>
               </label>
             </div>
           </div>
         </div>
         
-        <button class="bg-usta-azul-claro hover:bg-usta-azul-oscuro text-white rounded-lg px-6 py-3 font-medium mt-4">
+        <button class="bg-usta-azul-claro hover:bg-usta-azul-oscuro text-white rounded-lg px-6 py-3 font-medium mt-4 transition-colors">
           Enviar mi voto
         </button>
       </form>
-      <p id="statusMsg" class="mt-4 text-sm p-3 rounded-lg hidden"></p>
+      <p id="statusMsg" class="mt-4 text-sm p-3 rounded-lg hidden transition-colors"></p>
     </div>
   </section>
 
-  <!-- RESULTADOS (Placeholder) -->
+  <!-- RESULTADOS -->
   <section id="resultados" class="max-w-5xl mx-auto px-4 pb-16">
     <h2 class="text-2xl font-bold text-usta-azul-oscuro dark:text-white text-center mb-8">Resultados de la Votación</h2>
-    <div class="bg-usta-azul-oscuro/5 dark:bg-gray-800 rounded-2xl p-6 text-center">
+    <div class="transition-bg bg-usta-azul-oscuro/5 dark:bg-gray-800 rounded-2xl p-6 text-center">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-usta-azul-claro" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m7 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
-      <h3 class="text-xl font-semibold mt-4">Resultados en tiempo real</h3>
-      <p class="mt-2 text-gray-600 dark:text-gray-300">Los resultados se mostrarán aquí una vez finalizado el proceso de votación.</p>
+      <h3 class="text-xl font-semibold mt-4 transition-text text-gray-800 dark:text-white">Resultados en tiempo real</h3>
+      <p class="mt-2 transition-text text-gray-600 dark:text-gray-300">Los resultados se mostrarán aquí una vez finalizado el proceso de votación.</p>
       <p class="mt-1 text-sm text-usta-azul-claro">La transparencia es fundamental en nuestro proceso electoral.</p>
     </div>
   </section>
@@ -197,53 +204,7 @@
     </div>
   </footer>
 
-  <script>
-    // Interacciones de ejemplo
-    const themeBtn = document.getElementById('themeBtn');
-    const root = document.documentElement;
-    const statusMsg = document.getElementById('statusMsg');
-    const votingForm = document.getElementById('votingForm');
-    const yearSpan = document.getElementById('year');
-
-    yearSpan.textContent = new Date().getFullYear();
-
-    // Alternar tema claro/oscuro con una clase en <html>
-    themeBtn?.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      if (document.body.classList.contains('dark')) {
-        root.style.setProperty('color-scheme', 'dark');
-        themeBtn.textContent = 'Tema claro';
-      } else {
-        root.style.setProperty('color-scheme', 'light');
-        themeBtn.textContent = 'Tema oscuro';
-      }
-    });
-
-    // Formulario de votación (solo front, sin backend)
-    votingForm?.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(votingForm).entries());
-      
-      // Validar correo institucional
-      if (!data.email.endsWith('@ustabuca.edu.co')) {
-        statusMsg.textContent = 'Debes usar tu correo institucional (@ustabuca.edu.co)';
-        statusMsg.className = 'mt-4 text-sm p-3 rounded-lg bg-red-100 text-red-700';
-        statusMsg.classList.remove('hidden');
-        return;
-      }
-      
-      // Simular envío exitoso
-      statusMsg.textContent = `¡Gracias por votar! Tu participación ha sido registrada correctamente.`;
-      statusMsg.className = 'mt-4 text-sm p-3 rounded-lg bg-green-100 text-green-700';
-      statusMsg.classList.remove('hidden');
-      
-      votingForm.reset();
-      
-      // Scroll a resultados
-      setTimeout(() => {
-        document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
-      }, 1500);
-    });
-  </script>
+  <!-- Incluir el archivo JavaScript externo -->
+  <script src="script.js"></script>
 </body>
 </html>
